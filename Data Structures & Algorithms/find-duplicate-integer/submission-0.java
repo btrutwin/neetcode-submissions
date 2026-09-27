@@ -1,0 +1,22 @@
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow = 0;
+        int fast = 0;
+
+        // Find a meeting point inside the cycle
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while (slow != fast);
+
+        // Find the entrance to the cycle
+        slow = 0;
+
+        while (slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow;
+    }
+}
